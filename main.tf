@@ -28,6 +28,11 @@ resource "aws_lambda_function" "test_lambda" {
   runtime       = "python3.9"
 }
 
+resource "aws_lambda_function_url" "test_latest" {
+  function_name      = aws_lambda_function.test_lamdba.function_name
+  authorization_type = "NONE"
+}
+
 resource "aws_iam_policy" "policy" {
   name        = "test_policy"
   path        = "/"
@@ -65,4 +70,8 @@ data "archive_file" "zip_fido"{
 
 output "terraform_aws_role_output" {
   value = aws_iam_role.iam_for_lambda.name
+}
+
+output "lambda_url" {
+  value = aws_lambda_function.test_lambda.function_url
 }
