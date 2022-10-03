@@ -29,7 +29,7 @@ resource "aws_lambda_function" "test_lambda" {
 }
 
 resource "aws_lambda_function_url" "test_latest" {
-  function_name      = aws_lambda_function.test_lamdba.function_name
+  function_name      = aws_lambda_function.test_lambda.function_name
   authorization_type = "NONE"
 }
 
@@ -72,6 +72,6 @@ output "terraform_aws_role_output" {
   value = aws_iam_role.iam_for_lambda.name
 }
 
-output "lambda_url" {
-  value = aws_lambda_function.test_lambda.function_url
+output "lambda__function_url" {
+  value = aws_lambda_function_url.test_latest.function_url
 }
